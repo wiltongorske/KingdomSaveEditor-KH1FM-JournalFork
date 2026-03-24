@@ -1,0 +1,79 @@
+﻿<UserControl x:Class="KHSave.SaveEditor.Kh3.Views.RecordsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KHSave.SaveEditor.Kh3.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="400">
+    <TabControl>
+        <TabItem Header="Shotlocks">
+            <DataGrid
+                    ItemsSource="{Binding Shotlocks.Items}"
+                    AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                            Header="Name"
+                            Width="2*"
+                            IsReadOnly="True"
+                            Binding="{Binding Name}"/>
+                    <DataGridTextColumn
+                            Header="High Score"
+                            Width="1*"
+                            Binding="{Binding HighScore}"/>
+                    <DataGridTextColumn
+                            Header="Total Uses"
+                            Width="1*"
+                            Binding="{Binding TotalUses}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Attractions">
+            <DataGrid
+                    ItemsSource="{Binding Attractions.Items}"
+                    AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                            Header="Name"
+                            Width="2*"
+                            IsReadOnly="True"
+                            Binding="{Binding Name}"/>
+                    <DataGridTextColumn
+                            Header="High Score"
+                            Width="1*"
+                            Binding="{Binding HighScore}"/>
+                    <DataGridTextColumn
+                            Header="Total Uses"
+                            Width="1*"
+                            Binding="{Binding TotalUses}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Flantastics">
+            <DataGrid
+                    ItemsSource="{Binding Flantastics}"
+                    AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn
+                            Header="Name"
+                            Width="*"
+                            IsReadOnly="True"
+                            Binding="{Binding Name}"/>
+                    <DataGridTextColumn
+                            Header="High score"
+                            Width="*"
+                            Binding="{Binding HighScore}"/>
+                    <DataGridTextColumn
+                            Header="Attempts"
+                            Width="*"
+                            Binding="{Binding AttemptCount}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+        <TabItem Header="Minigames">
+            <ScrollViewer>
+                <local:RecordMinigamesView/>
+            </ScrollViewer>
+        </TabItem>
+    </TabControl>
+</UserControl>

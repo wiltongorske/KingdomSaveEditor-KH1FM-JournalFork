@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6</TargetFramework>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KHSave.Archives\KHSave.Archives.csproj" />
+    <ProjectReference Include="..\KHSave.Lib02\KHSave.Lib02.csproj" />
+    <ProjectReference Include="..\KHSave.Lib1\KHSave.Lib1.csproj" />
+    <ProjectReference Include="..\KHSave.Lib2\KHSave.Lib2.csproj" />
+    <ProjectReference Include="..\KHSave.Lib3\KHSave.Lib3.csproj" />
+    <ProjectReference Include="..\KHSave.LibBbs\KHSave.LibBbs.csproj" />
+    <ProjectReference Include="..\KHSave.LibDDD\KHSave.LibDDD.csproj" />
+    <ProjectReference Include="..\KHSave.LibFf7Remake\KHSave.LibFf7Remake.csproj" />
+    <ProjectReference Include="..\KHSave.LibPersona3\KHSave.LibPersona3.csproj" />
+    <ProjectReference Include="..\KHSave.LibPersona5\KHSave.LibPersona5.csproj" />
+    <ProjectReference Include="..\KHSave.LibRecom\KHSave.LibRecom.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Saves\**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
