@@ -4,7 +4,7 @@
 
 ## Fork note: KH1 Final Mix Journal support
 
-This repository is a GPLv3 fork of Xeeynamo's archived `KingdomSaveEditor`. The main reason for this fork is a small but important KH1 Final Mix improvement: support for editing the hidden Journal flags used by the Final Mix-only Ansem Reports.
+This repository is a GPLv3 fork of Xeeynamo's archived [`KingdomSaveEditor`](https://github.com/Xeeynamo/KingdomSaveEditor). The main reason for this fork is a small but important KH1 Final Mix improvement: support for editing the hidden Journal flags used by the Final Mix-only Ansem Reports.
 
 This matters for players using the Japanese PS2 release of **Kingdom Hearts Final Mix** with an **English fan-translation patch**. That patch is known to miss a few Final Mix reward grants in actual gameplay. If you already progressed past those reward points on your memory card, switching to a fixed ISO later will not retroactively repair the save you already made. In practice, the known affected rewards are:
 
@@ -13,6 +13,10 @@ This matters for players using the Japanese PS2 release of **Kingdom Hearts Fina
 - `Ansem's Report 11`, which should also be awarded after defeating Kurt Zisa in Agrabah
 
 The first two are ordinary ability edits and were already easy to repair through the save model. The important difference in this fork is `Ansem's Report 11`: in KH1 Final Mix, making the report visible in Jiminy's Journal requires more than setting the inventory item count. The working fix is to set inventory count for item `149` to `1` and also set the Final Mix-only report Journal field at save offset `0x19C1`, bits `3..5`, to `100`. This fork exposes that hidden Journal-side state so completionists can repair affected saves directly at the memory-card level without having to restart the game or reverse-engineer offsets by hand.
+
+## Original README from the main project
+
+The remaining sections below are preserved from the original upstream `KingdomSaveEditor` README for reference.
 
 | Supported games                | Console         | Region |
 |--------------------------------| ----------------|--------|
@@ -46,7 +50,7 @@ You need to decrypt your save before opening it with Kingdom Save Editor. Please
 
 This software is **free and open-source**, and every contribution is more than welcome!
 
-If you want to add missing names, improve it or add new offsets, just clone the repository, do your change, test if it does work and create a pull request: we will review your change (no needs to be scared here) and we will merge it to this repo! Do not be shy on contribute, even for the smallest thing 😃
+The original upstream `KingdomSaveEditor` repository is archived and read-only, so its original pull request instructions no longer apply there. If you want to contribute fixes or improvements, please use this fork's repository and contribution workflow instead.
 
 ## Special thanks
 
