@@ -4,9 +4,9 @@
 
 ## Fork note: KH1 Final Mix Journal support
 
-This repository is a GPLv3 fork of Xeeynamo's archived [`KingdomSaveEditor`](https://github.com/Xeeynamo/KingdomSaveEditor). The main reason for this fork is a small but important KH1 Final Mix improvement: support for editing the hidden Final Mix-only Journal flags tied to Ansem Reports 11 through 13, with `Ansem's Report 11` being the known practical fix for affected patched saves.
+This repository is a GPLv3 fork of Xeeynamo's archived [`KingdomSaveEditor`](https://github.com/Xeeynamo/KingdomSaveEditor). The main reason for this fork is a small but important KH1 Final Mix improvement for specific patches: support for editing the hidden Final Mix-only Journal flags tied to Ansem Reports 11 through 13, with `Ansem's Report 11` being the known practical fix.
 
-This matters for players using the Japanese PS2 release of **Kingdom Hearts Final Mix** with an **English fan-translation patch**. That patch is known to miss a few Final Mix reward grants in actual gameplay. If you already progressed past those reward points on your memory card, switching to a fixed ISO later will not retroactively repair the save you already made. In practice, the known affected rewards are:
+This matters for players using the Japanese PS2 release of **Kingdom Hearts Final Mix** with an **English fan-translation patch**. That patch is known to miss a few Final Mix reward grants in actual gameplay. If you already progressed past those reward points on your memory card, switching to a fixed ISO later will not retroactively repair the save you already made. Similarly, you may not have access to a fixed ISO or to a Windows environment for applying the distributed patch. In practice, the known affected rewards are:
 
 - `Encounter Plus`, which should be awarded after synthesizing 15 unique items from synthesis Groups 1 through 3
 - `Zantetsuken`, which should be awarded after defeating Kurt Zisa in Agrabah
@@ -14,9 +14,11 @@ This matters for players using the Japanese PS2 release of **Kingdom Hearts Fina
 
 The first two are ordinary ability edits and were already easy to repair through the save model. The important difference in this fork is `Ansem's Report 11`: in KH1 Final Mix, making the report visible in Jiminy's Journal requires more than setting the inventory item count. The working fix for affected patched saves is to set inventory count for item `149` to `1` and also set the Final Mix-only report Journal field at save offset `0x19C1`, bits `3..5`, to `100`. This fork exposes that hidden Journal-side state directly in the editor. It keeps the full Final Mix-only report mapping for reports `11` through `13` because those bits appear to belong to one compact structure, but the known broken reward in actual patched-save use is `Ansem's Report 11`; reports `12` and `13` are included for completeness rather than because they are known to be bugged.
 
-## Original README from the main project
+## Reference from the original project
 
-The remaining sections below are preserved from the original upstream `KingdomSaveEditor` README for reference.
+The remaining sections below are adapted from the original upstream `KingdomSaveEditor` README and kept here for reference.
+
+---
 
 | Supported games                | Console         | Region |
 |--------------------------------| ----------------|--------|
@@ -38,19 +40,11 @@ The remaining sections below are preserved from the original upstream `KingdomSa
 
 ## Donations
 
-My GitHub is open to a [sponsor program](https://github.com/sponsors/Xeeynamo). If you feel that the editor helped you in some way or you would like to support it, you can consider to [donate me](https://github.com/sponsors/Xeeynamo).
+Xeeynamo, the original creator of `KingdomSaveEditor`, is open to a [GitHub Sponsors program](https://github.com/sponsors/Xeeynamo). If the editor helped you and you would like to support the original project author, you can consider [donating to him](https://github.com/sponsors/Xeeynamo).
 
 ## User guide
 
 You need to decrypt your save before opening it with Kingdom Save Editor. Please refer to [this guide](docs/decryption.md) to know how to decrypt your save.
-
-## Contribution
-
-### Contribute to make it better
-
-This software is **free and open-source**, and every contribution is more than welcome!
-
-The original upstream `KingdomSaveEditor` repository is archived and read-only, so its original pull request instructions no longer apply there. If you want to contribute fixes or improvements, please use this fork's repository and contribution workflow instead.
 
 ## Special thanks
 
