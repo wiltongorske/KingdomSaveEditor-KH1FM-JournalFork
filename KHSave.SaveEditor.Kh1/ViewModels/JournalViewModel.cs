@@ -9,6 +9,14 @@ namespace KHSave.SaveEditor.Kh1.ViewModels
     {
         public JournalViewModel(SaveKh1.SaveFinalMix save)
         {
+            Heartless = new ObservableCollection<JournalReportModel>
+            {
+                new JournalReportModel(
+                    "Red Armor",
+                    () => save.JournalHeartlessRedArmor,
+                    value => save.JournalHeartlessRedArmor = value),
+            };
+
             Reports = new ObservableCollection<JournalReportModel>
             {
                 new JournalReportModel(
@@ -38,6 +46,7 @@ namespace KHSave.SaveEditor.Kh1.ViewModels
             };
         }
 
+        public ObservableCollection<JournalReportModel> Heartless { get; }
         public ObservableCollection<JournalReportModel> Reports { get; }
     }
 }

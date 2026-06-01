@@ -4,15 +4,18 @@
 
 ## Fork note: KH1 Final Mix Journal support
 
-This repository is a GPLv3 fork of Xeeynamo's archived [`KingdomSaveEditor`](https://github.com/Xeeynamo/KingdomSaveEditor). The main reason for this fork is a small but important KH1 Final Mix improvement for specific patches: support for editing the hidden Final Mix-only Journal flags tied to Ansem Reports 11 through 13, with `Ansem's Report 11` being the known practical fix.
+This repository is a GPLv3 fork of Xeeynamo's archived [`KingdomSaveEditor`](https://github.com/Xeeynamo/KingdomSaveEditor). The main reason for this fork is a small but important KH1 Final Mix improvement for specific patches: support for editing hidden Journal flags that can be missed by patched Japanese KH1 Final Mix saves. It currently exposes the Final Mix-only Ansem Report flags tied to reports 11 through 13, plus the Heartless Journal completion flag for `Red Armor`.
 
 This matters for players using the Japanese PS2 release of **Kingdom Hearts Final Mix** with an **English fan-translation patch**. That patch is known to miss a few Final Mix reward grants in actual gameplay. If you already progressed past those reward points on your memory card, switching to a fixed ISO later will not retroactively repair the save you already made. Similarly, you may not have access to a fixed ISO or to a Windows environment for applying the distributed patch. In practice, the known affected rewards are:
 
 - `Encounter Plus`, which should be awarded after synthesizing 15 unique items from synthesis Groups 1 through 3
 - `Zantetsuken`, which should be awarded after defeating Kurt Zisa in Agrabah
 - `Ansem's Report 11`, which should also be awarded after defeating Kurt Zisa in Agrabah
+- `Red Armor` in the Heartless section of Jiminy's Journal, which should be completed after defeating Red Armor in the Phil Cup
 
-The first two are ordinary ability edits and were already easy to repair through the save model. The important difference in this fork is `Ansem's Report 11`: in KH1 Final Mix, making the report visible in Jiminy's Journal requires more than setting the inventory item count. The working fix for affected patched saves is to set inventory count for item `149` to `1` and also set the Final Mix-only report Journal field at save offset `0x19C1`, bits `3..5`, to `100`. This fork exposes that hidden Journal-side state directly in the editor. It keeps the full Final Mix-only report mapping for reports `11` through `13` because those bits appear to belong to one compact structure, but the known broken reward in actual patched-save use is `Ansem's Report 11`; reports `12` and `13` are included for completeness rather than because they are known to be bugged.
+The first two are ordinary ability edits and were already easy to repair through the save model. The important difference in this fork is the hidden Journal-side state. In KH1 Final Mix, making `Ansem's Report 11` visible in Jiminy's Journal requires more than setting the inventory item count. The working fix for affected patched saves is to set inventory count for item `149` to `1` and also set the Final Mix-only report Journal field at save offset `0x19C1`, bits `3..5`, to `100`. This fork exposes that hidden Journal-side state directly in the editor. It keeps the full Final Mix-only report mapping for reports `11` through `13` because those bits appear to belong to one compact structure, but the known broken reward in actual patched-save use is `Ansem's Report 11`; reports `12` and `13` are included for completeness rather than because they are known to be bugged.
+
+The `Red Armor` Heartless Journal completion fix is stored at save offset `0x16F9`, bit `1` (`0x02`). Setting that bit marks the Red Armor entry complete for Jiminy's Journal. This is useful when the game has already passed the Phil Cup reward/checkpoint but the patched save still shows the Heartless category as incomplete.
 
 ## Reference from the original project
 

@@ -42,14 +42,53 @@ namespace KHSave.Lib1
             [Data(0x1641C)] public uint Munny { get; set; }
             [Data(0x1642C)] public byte Difficulty { get; set; }
 
+            private const int JournalHeartlessRedArmorOffset = 0x16F9;
+            private const byte JournalHeartlessRedArmorMask = 0x02;
+            private const int JournalAnsemsReportsOffset = 0x19C1;
+            private const byte JournalAnsemsReport11Mask = 0x20;
+            private const byte JournalAnsemsReport12Mask = 0x10;
+            private const byte JournalAnsemsReport13Mask = 0x08;
+
             // KH1FM stores the FM-only Ansem Report journal visibility bits
             // separately from the generic inventory count table.
-            [Data(0x19C1, BitIndex = 5)] public bool JournalAnsemsReport11 { get; set; }
-            [Data(0x19C1, BitIndex = 4)] public bool JournalAnsemsReport12 { get; set; }
-            [Data(0x19C1, BitIndex = 3)] public bool JournalAnsemsReport13 { get; set; }
+            public bool JournalAnsemsReport11
+            {
+                get => GetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport11Mask);
+                set => SetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport11Mask, value);
+            }
+
+            public bool JournalAnsemsReport12
+            {
+                get => GetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport12Mask);
+                set => SetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport12Mask, value);
+            }
+
+            public bool JournalAnsemsReport13
+            {
+                get => GetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport13Mask);
+                set => SetFlag(JournalAnsemsReportsOffset, JournalAnsemsReport13Mask, value);
+            }
+
+            // KH1FM stores at least one Heartless entry completion bit outside
+            // the obvious journal area. This flag marks Red Armor complete.
+            public bool JournalHeartlessRedArmor
+            {
+                get => GetFlag(JournalHeartlessRedArmorOffset, JournalHeartlessRedArmorMask);
+                set => SetFlag(JournalHeartlessRedArmorOffset, JournalHeartlessRedArmorMask, value);
+            }
 
             public void Write(Stream stream) =>
                 BinaryMapping.WriteObject(stream.FromBegin(), this);
+
+            private bool GetFlag(int offset, byte mask) => (Data[offset] & mask) == mask;
+
+            private void SetFlag(int offset, byte mask, bool value)
+            {
+                if (value)
+                    Data[offset] |= mask;
+                else
+                    Data[offset] &= (byte)~mask;
+            }
         }
     }
 }

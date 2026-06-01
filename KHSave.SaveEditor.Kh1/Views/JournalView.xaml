@@ -9,17 +9,39 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="8"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="8"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <TextBlock TextWrapping="Wrap">
-            KH1 Final Mix stores the FM-only Ansem Reports as Journal flags separate
-            from the normal inventory table. Toggle these entries to keep the visible
-            Journal state in sync with the report item.
+            KH1 Final Mix stores some Journal entries as hidden flags separate from
+            the normal inventory and reward tables. Toggle these entries to repair
+            patched saves that missed the original reward trigger.
         </TextBlock>
 
         <DataGrid
             Grid.Row="2"
+            AutoGenerateColumns="False"
+            Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            ItemsSource="{Binding Heartless}">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Header="Heartless"
+                    Width="*"
+                    IsReadOnly="True"
+                    Binding="{Binding Name}"/>
+                <DataGridCheckBoxColumn
+                    Header="Complete In Journal"
+                    Width="Auto"
+                    Binding="{Binding IsVisible, UpdateSourceTrigger=PropertyChanged}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <DataGrid
+            Grid.Row="4"
             AutoGenerateColumns="False"
             Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"
             CanUserAddRows="False"

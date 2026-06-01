@@ -48,6 +48,13 @@ namespace KHSave.Tests
         }
 
         [Fact]
+        public void TestFinalMixJournalFlags()
+        {
+            Assert.True(save.JournalHeartlessRedArmor);
+            Assert.True(save.JournalAnsemsReport11);
+        }
+
+        [Fact]
         public void TestWriteBackTheSameExactFile() =>
         File.OpenRead(FilePath).Using(stream => Helpers.AssertStream(stream, inStream =>
         {
